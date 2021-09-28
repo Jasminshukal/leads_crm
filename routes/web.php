@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [FrontendController::class,'home']);
+Route::get('/apply', [FrontendController::class,'apply']);
+Route::post('/apply', [FrontendController::class,'applyStore'])->name('apply_store');
+Route::get('/about', [FrontendController::class,'about']);
+Route::get('/testimonials', [FrontendController::class,'testimonials']);
+Route::get('/funding', [FrontendController::class,'funding']);
+Route::get('/services', [FrontendController::class,'services']);
+Route::get('/services/detail/{slug}', [FrontendController::class,'services-detail']);
+Route::get('/faq', [FrontendController::class,'faq']);
+Route::get('/loans', [FrontendController::class,'loans']);
+Route::get('/contact', [FrontendController::class,'contact']);
+Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
