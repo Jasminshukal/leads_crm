@@ -15,7 +15,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 */
 
 
-Route::get('/', [FrontendController::class,'home']);
+Route::get('/', [FrontendController::class,'home'])->name('home');
 Route::get('/apply', [FrontendController::class,'apply']);
 Route::post('/apply', [FrontendController::class,'applyStore'])->name('apply_store');
 Route::get('/about', [FrontendController::class,'about']);
