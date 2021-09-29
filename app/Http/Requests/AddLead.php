@@ -24,7 +24,21 @@ class AddLead extends FormRequest
     public function rules()
     {
         return [
-            ''
+            'amount' => 'required|numeric',
+            'income' => 'required|numeric',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'dob' => 'required|date',
+            'gender' => 'required',
+            'address' => 'required',
+            'country' => 'required',
+            'email' => 'required|unique:leads,email',
+            'phon' => 'required|unique:leads,phon',
+            'alternative_email' => 'required',
+            'company' => 'required',
+            'purpose' => 'required',
+            'type_loans' => 'required',
+
         ];
     }
 }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddLead;
 use App\Mail\AddLeads;
 use App\Models\Admin\Lead;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Laravel\Ui\Presets\React;
 
 class FrontendController extends Controller
@@ -24,7 +26,6 @@ class FrontendController extends Controller
     {
         return view('layouts.page.apply');
     }
-
     public function testimonials()
     {
         return view('layouts.page.testimonials');
@@ -40,14 +41,11 @@ class FrontendController extends Controller
         return view('layouts.page.about');
     }
 
-    public function applyStore(Request $request)
+    public function applyStore(AddLead $request)
     {
         \Mail::to(config('app.admin_email'))->send(new AddLeads($request->all()));
-
-       $leads= Lead::create($request->all());
-
-        dd($leads);
-        return view('layouts.page.about');
+       $leads= Lead::create($request->validated());
+        return redirect('apply');
     }
 
     public function faq()
